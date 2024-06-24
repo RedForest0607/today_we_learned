@@ -1,10 +1,11 @@
 ‌# Summary​
 
-## Use headings to create page groups like this one​
+## 깃북 소개
 
-* [Introduction](README.md)
+* [Introduction](./README.md)
 
+## 작성 분야
 
-* [Infra](docs/infra/README.md)
+* [Infra](./infra/README.md)
 
-* [Dev](docs/dev/README.md)
+* [Dev](./dev/README.md)

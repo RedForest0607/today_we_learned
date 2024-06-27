@@ -18,7 +18,7 @@
   * [인프라](./troubleshooting/infra/test.md)
   
 * [K8S & Docker 🚢](./troubleshooting/K8S%20&%20Docker%20/)
-  * [인프라](./troubleshooting/infra/test.md)
+  * [쿠버네티스 워커노드 connection-refused 문제](./troubleshooting/K8S%20&%20Docker%20/refused-connection-from-worker-node.md)
 
 * [Dev](./troubleshooting/dev/README.md)
   * [개발](./troubleshooting/dev/test.md)

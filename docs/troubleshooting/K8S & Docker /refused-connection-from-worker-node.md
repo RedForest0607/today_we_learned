@@ -27,7 +27,14 @@ users: []
 
 다음과 같은 값이 나온다면 node의 config를 설정하지 않은 경우이다, 이런 경우 config를 잡아주어서, 워커 노드를 연결해줘야 한다.  
 쿠버네티스의 클러스터링을 관리하는 툴인 `kubeadm`명령어를 통해서 설정을 잡아줘야한다.
+> 25.02.04 수정 다음과 같은 방법은 잘못된 방법이다 클러스터에서 kubectl을 통한 제어는 마스터를 통해서 가능하다. 다음의 오류 해결 결과는 복합적인 이유로 인한 문제를 해결한 것으로 보이지만, 아마 가장 큰 원인은 kubeadm을 통한 클러스터링 설정이 잘못 되었던 것 같다.  
 
+>kubectl은 기본적으로 마스터를 통한 제어(kubeapi-server을 통한다)를 위한 툴이기 때문에 작동하지 않는게 맞고, 만약 원한다면 마스터 노드상의 admin.conf 파일을 패스해주는 것으로 임시적으로 설정 가능하다.  
+
+[다음의 내용 참고](https://stackoverflow.com/questions/63539796/connection-refused-error-on-worker-node-in-kubernetes])
+  
+  
+  
 ``` sh
 [root@k8s-master ~]# kubeadm reset //리셋이 필요한 경우
 [root@k8s-master ~]# kubeadm token create --print-join-command

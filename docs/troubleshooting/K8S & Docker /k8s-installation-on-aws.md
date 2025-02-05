@@ -106,3 +106,43 @@
 12. calico 네트워크 플러그인 설치
 
     [calico docs](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#install-calico)
+
+> 삭제의 경우 단순하게 `kubeadm reset`을 통한 삭제로는 충분하지 않을 수 있다 다음과 같이 남아 있는 잔여 데이터를 전부 삭제해줘야, CIDR Range 변경과 같은 클러스터 설정 변경시에 완전하게 재적용이 된다.
+
+1. 마스터노드에서 클러스터 리셋
+    `sudo kubeadm reset`
+
+2. iptables 초기화
+
+    ```bash
+    sudo iptables --flush
+    sudo iptables -tnat --flush
+    sudo systemctl restart iptables
+    
+    sudo rm -rf /etc/cni/net.d
+    ```
+
+3. 쿠버네티스 관련 파일 삭제
+
+    ```bash
+    sudo rm -rf ~/.kube
+    sudo rm -rf /etc/kubernetes
+    sudo rm -rf /var/lib/kubelet
+    sudo rm -rf /var/lib/etcd
+    sudo rm -rf /var/lib/cni
+    ```
+
+4. 컨테이너 런타임 데이터 정리
+
+    containerd
+
+    ```bash
+    sudo systemctl stop containerd
+    sudo rm -rf /var/lib/containerd
+    sudo systemctl start containerd
+    ```
+
+    docker
+    `sudo rm -rf /etc/cni/net.d`
+
+위의 단계를 차근차근 밟아 나가서 완전히 데이터를 삭제한 후 재 적용이 필요하다.
